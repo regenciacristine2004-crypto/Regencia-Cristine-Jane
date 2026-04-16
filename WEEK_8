@@ -1,0 +1,38 @@
+try:
+    with open("message.txt", "x") as file:
+        print("message.txt created successfully!")
+except FileExistsError:
+    print("File already exists")
+
+while True:
+    print("\n--- Messaging App ---")
+    print("1. Send Message")
+    print("2. View Messages")
+    print("3. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        try:
+            msg = input("Type your message: ")
+            with open("message.txt", "a") as file:
+                file.write(msg + "\n")
+            print("Message sent successfully!")
+        except:
+            print("Error while sending message.")
+
+    elif choice == "2":
+        try:
+            print("\n--- Messages ---")
+            with open("message.txt", "r") as file:
+                for line in file:
+                    print(line.strip())
+        except:
+            print("Error reading the file.")
+
+    elif choice == "3":
+        print("Program closed.")
+        break
+
+    else:
+        print("Invalid choice. Please try again.")
